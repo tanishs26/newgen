@@ -101,7 +101,7 @@ export class Service {
       console.log("File delete error ", error);
     }
   }
-  async getFile(fileid) {
+  async getFilePreview(fileid) {
     try {
       return await this.bucket.getFilePreview(
         appwrite.appwriteBucketId,

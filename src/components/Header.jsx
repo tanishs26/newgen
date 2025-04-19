@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Container, LogoutBtn, Logo } from "./import";
 import { useNavigate } from "react-router-dom";
 import { NavLink, Link } from "react-router-dom";
-import { Input } from "./import.js";
+import { Select } from "./import.js";
+
 const Header = () => {
   const authStatus = useSelector((state) => state.auth.status);
   const navigate = useNavigate();
@@ -71,7 +72,8 @@ const Header = () => {
           {authStatus && <LogoutBtn />}
         </ul>
       </nav>
-     
+      
+
     </header>
   );
 };
