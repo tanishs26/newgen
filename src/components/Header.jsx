@@ -1,11 +1,9 @@
 import React from "react";
-import authService from "../appwrite/auth";
-import { logout } from "../store/authSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { Container, LogoutBtn, Logo } from "./import";
+import { useSelector } from "react-redux";
+import { LogoutBtn, Logo } from "./import";
 import { useNavigate } from "react-router-dom";
 import { NavLink, Link } from "react-router-dom";
-import { Select } from "./import.js";
+import { Select, Login, Signup } from "./import.js";
 
 const Header = () => {
   const authStatus = useSelector((state) => state.auth.status);
@@ -72,8 +70,6 @@ const Header = () => {
           {authStatus && <LogoutBtn />}
         </ul>
       </nav>
-      
-
     </header>
   );
 };
