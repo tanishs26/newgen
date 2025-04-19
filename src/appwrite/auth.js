@@ -24,14 +24,14 @@ export class AuthService {
         return this.login({ email, password });
       }
     } catch (error) {
-      alert("Create account error:", error);
+      console.log("Create account error:", error);
     }
   }
   async login() {
     try {
       return await this.account.createEmailPasswordSession({ email, password });
     } catch (error) {
-      alert("Login error:", error);
+      console.log("Login error:", error);
     }
   }
 
@@ -39,14 +39,14 @@ export class AuthService {
     try {
       return await this.account.get();
     } catch (error) {
-      alert("Get current user error:", error);
+      console.log("Get current user error:", error);
     }
   }
   async logout() {
     try {
       return await this.account.deleteSessions();
     } catch (error) {
-      alert("Logout user error:", error);
+      console.log("Logout user error:", error);
     }
   }
 }
