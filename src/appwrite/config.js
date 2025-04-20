@@ -24,6 +24,7 @@ export class Service {
           content,
           featuredImg,
           status,
+          userId,
         }
       );
     } catch (error) {
@@ -51,7 +52,7 @@ export class Service {
     try {
       await this.databases.deleteDocument(
         appwrite.appwriteDatabaseId,
-        appwrote.appwriteCollectionId,
+        appwrite.appwriteCollectionId,
         slug
       );
       return true;
@@ -72,7 +73,7 @@ export class Service {
   }
   async getAllPost(queries = [Query.equal("status", "active")]) {
     try {
-      return await this.databases.getDocument(
+      return await this.databases.listDocuments(
         appwrite.appwriteDatabaseId,
         appwrite.appwriteCollectionId,
         queries
@@ -83,12 +84,11 @@ export class Service {
   }
   async fileUpload(file) {
     try {
-      await this.bucket.createFile(
+      return await this.bucket.createFile(
         appwrite.appwriteBucketId,
         ID.unique(),
         file
       );
-      return true;
     } catch (error) {
       console.log("file error");
     }

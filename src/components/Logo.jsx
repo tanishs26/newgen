@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "./logo.png";
 const Logo = ({ width = "100px", className, className2 }) => {
   return (
     <div className="flex flex-col items-center gap-2 ">

@@ -8,7 +8,7 @@ const PostCard = ({ $id, title, featuredImg }) => {
         <div className="w-full">
           <img src={service.getFilePreview(featuredImg)} alt={title} />
           <h2 className="text-2xl text-gray-300 font-bold">
-            {title[0].toUpperCase() + title.slice(1)}
+            {title[0].toUpperCase() + title.slice(1)||'Untitled'}
           </h2>
         </div>
       </div>

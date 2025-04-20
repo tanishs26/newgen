@@ -8,4 +8,21 @@ import Input from "./Input";
 import Login from "./Login";
 import Signup from "./Signup";
 import Select from "./Select";
-export { Footer, Header, Container, LogoutBtn, Logo, Button, Input, Select,Login,Signup };
+import RTE from "./RTE";
+import PostForm from "./PostForm";
+import PostCard from "./PostCard";
+export {
+  Footer,
+  Header,
+  Container,
+  LogoutBtn,
+  Logo,
+  Button,
+  Input,
+  Select,
+  Login,
+  Signup,
+  RTE,
+  PostForm,
+  PostCard,
+};
