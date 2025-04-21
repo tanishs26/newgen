@@ -1,5 +1,5 @@
 import React from "react";
-import { RTE, Button, Input,Select } from "./import.js";
+import { RTE, Button, Input, Select } from "./import.js";
 import { useForm } from "react-hook-form";
 import service from "../appwrite/config.js";
 import { useNavigate } from "react-router-dom";
@@ -18,6 +18,10 @@ const PostForm = ({ post }) => {
     });
   const userData = useSelector((state) => state.auth.userData);
   const submit = async (data) => {
+    console.log("🧪 Form Submitted");
+    console.log("Data in first log : ", data);
+
+
     if (post) {
       const file = data.image[0]
         ? await service.fileUpload(data.image[0])
@@ -36,18 +40,20 @@ const PostForm = ({ post }) => {
       const file = data.image?.[0]
         ? await service.fileUpload(data.image[0])
         : null;
+      const fileId = file.$id;
+      data.featuredImg = fileId;
+      console.log("👤 userData:", userData);
+      
+      console.log("📦 Creating post with data 2nd log:", data);
 
-      if (file) {
-        const fileId = file.$id;
-        data.featuredImg = fileId;
-        const dbFile = await service.createPost({
-          ...data,
-          userId: userData.$id,
-        });
-        if (dbFile) {
-          navigate(`/post/${dbFile.$id}`);
-        }
+      const dbFile = await service.createPost({
+        ...data,
+        userid: userData.$id,
+      });
+      if (dbFile) {
+        navigate(`/post/${dbFile.$id}`);
       }
+
     }
   };
   const slugTransform = (value) => {
@@ -62,7 +68,7 @@ const PostForm = ({ post }) => {
     });
   }, [slugTransform, setValue, watch]);
   return (
-    <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
+    <form onSubmit={handleSubmit(submit, (err) => console.log("❌ Validation errors:", err))}>
       <div className="w-2/3 px-2">
         <Input
           label="Title :"
@@ -94,7 +100,7 @@ const PostForm = ({ post }) => {
           type="file"
           className="mb-4"
           accept="image/png, image/jpg, image/jpeg, image/gif"
-          {...register("image", { required: !post })}
+          {...register("image", { required: false })}
         />
         {post && (
           <div className="w-full mb-4">
@@ -113,12 +119,11 @@ const PostForm = ({ post }) => {
         />
         <Button
           type="submit"
-          
-          bgColor={post ? "bg-green-500" : undefined}
-          className="w-full"
-        >
-          {post ? "Update" : "Submit"}
-        </Button>
+          className="w-full bg-red-600"
+          btnText={post ? "Update" : "Submit"}
+        />
+        
+
       </div>
     </form>
   );
