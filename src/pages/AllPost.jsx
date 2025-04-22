@@ -9,7 +9,7 @@ const AllPost = () => {
         setPosts(posts.documents);
       }
       console.log(posts)
-    }); 
+    });
   }, []);
 
   return (

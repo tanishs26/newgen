@@ -101,14 +101,20 @@ export class Service {
       console.log("File delete error ", error);
     }
   }
-  async getFilePreview(fileid) {
+  async getFilePreview(fileId) {
     try {
-      return this.bucket.getFilePreview(
-        appwrite.appwriteBucketId,
-        fileid
+      // console.log("Fetching preview for file:", fileId);
+      // console.log("Using bucket ID:", import.meta.env.VITE_BUCKET_ID);
+
+      const result = this.bucket.getFileView(
+        import.meta.env.VITE_BUCKET_ID,
+        fileId
       );
+
+      return result;
     } catch (error) {
-      console.log("File get error ", error);
+      console.error("File preview error:", error);
+      throw error;
     }
   }
 }

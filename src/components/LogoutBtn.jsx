@@ -11,7 +11,9 @@ const LogoutBtn = () => {
       dispatch(logout());
     });
   };
-  return <Button onBtnClick={logoutHandler} btnText="Logout" type="button" />;
+  return <button onClick={logoutHandler}   >
+    Logout
+  </button>
 };
 
 export default LogoutBtn;
